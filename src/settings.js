@@ -1,3 +1,3 @@
 module.exports = {
-    apiEndpoint: 'localhost:8000'
+    apiEndpoint: 'http://localhost:8000/api'
 };

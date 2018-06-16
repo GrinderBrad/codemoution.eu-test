@@ -6,14 +6,11 @@ const axiosInstance = axios.create({
 });
 
 const onResponseValid = (payload) => {
-    if(payload.headers['x-access-token']){
-        localStorage.setItem('token', payload.headers['x-access-token'])
-    }
     return Promise.resolve(parsePayload(payload))
 };
 
 const onResponseInvalid = (payload) => {
-    if(payload.response.status === 401){
+    if(payload.responce && payload.response.status === 401){
         localStorage.setItem('user', undefined);
         window.location.href = '/login';
     }
@@ -36,7 +33,6 @@ const makeRequest = (method, url, data = {}, isJson) => {
         data,
         headers: {
             'Accept': 'application/json',
-            'x-access-token': `Bearer ${localStorage.getItem('token')}`,
         }
     };
     requestParams.data.userId = localStorage.getItem('userId');
