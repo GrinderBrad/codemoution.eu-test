@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import './IndexPage.css';
-import {Paper, TextField} from "@material-ui/core/es/index";
+import {Paper} from "@material-ui/core/es/index";
 import ProductForm from "../common/product-form/ProductForm";
 import withStyles from "@material-ui/core/es/styles/withStyles";
-import SnackBar from "../common/SnackBar/SnackBar";
+import NewInvoiceForm from "../common/new-invoice/NewInvoiceContainer";
+import InvoiceCard from "../common/invoice-card/InvoiceCard";
 
 const styles = {
     productForm: {
@@ -12,6 +13,14 @@ const styles = {
         width: '400px'
     }
 };
+
+const RenderInvoices = ({invoices}) => {
+    return invoices.map((invoice, index) => {
+        return (
+            <InvoiceCard key={index}/>
+        )
+    })
+}
 
 class IndexPage extends Component {
 
@@ -30,13 +39,15 @@ class IndexPage extends Component {
     }
 
   render() {
-      const {classes} = this.props;
+      const {classes, invoices} = this.props;
       const actions = this.props.actions;
     return (
       <div id="index-page">
+          <RenderInvoices invoices={invoices}/>
           <Paper className={classes.productForm}>
               <ProductForm submitProduct={actions.submitProduct}/>
           </Paper>
+          <NewInvoiceForm />
       </div>
     );
   }

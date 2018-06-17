@@ -12,9 +12,11 @@ const initialState = Map({
 
 export default createReducer({
     [INIT_DATA]: (state, action) => {
-        state.set('invoices', action.payload.invoices);
-        state.set('customers', action.payload.customers);
-        return state.set('products', action.payload.products);
+        return state.merge({
+            invoices: action.payload.invoices.data,
+            customers: action.payload.customers.data,
+            products: action.payload.products.data
+        });
     }
 
 }, initialState);

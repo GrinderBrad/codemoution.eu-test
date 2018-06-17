@@ -7,7 +7,7 @@ import Menu from "../common/menu/Menu";
 class App extends Component {
     state = {
         anchorEl: null,
-    }
+    };
     handleMenuClick = event => {
         this.setState({ anchorEl: event.currentTarget });
     };

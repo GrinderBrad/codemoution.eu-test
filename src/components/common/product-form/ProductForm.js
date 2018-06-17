@@ -40,7 +40,8 @@ const EditProductForm = withFormik({
         }
     ) => {
         Object.keys(values).forEach((key) => setFieldTouched({[key]: true}));
-        props.submitProduct(values)
+        console.log(values);
+        props.submitProduct({name: values.productName, price: values.productPrice})
     },
 })(ProductForm);
 
